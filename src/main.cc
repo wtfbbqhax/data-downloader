@@ -55,7 +55,8 @@ private:
     vector<Asset> assets;
 };
 
-struct Github_Releases {
+struct Github_Releases
+{
     Github_Releases(std::string text)
     {
         cJSON *j = cJSON_Parse(text.c_str());
@@ -71,9 +72,15 @@ struct Github_Releases {
                        cJSON_GetObjectItem(o, "published_at")->valuestring );
 
             r.push(cJSON_GetObjectItem(o, "assets"));
+            releases.emplace_back(r);
         }
     }
-private:
+
+    auto begin()
+    {
+        return releases.begin();
+    }
+//private:
     std::vector<Release> releases;
 };
 
@@ -88,7 +95,9 @@ int main(int argc, char *argv[])
     if ( r.code != 200 )
         throw GithubException();
 
-    Github_Releases(r.body);
+    Github_Releases releases = Github_Releases(r.body);
+
+//    std::cout << releases.latest() << "\n";
 
     return 0;
 }
