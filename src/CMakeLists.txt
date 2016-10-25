@@ -6,5 +6,4 @@ include_directories( BEFORE
     ${CMAKE_SOURCE_DIR}
     ${RapidJSON_INCLUDE_DIR} )
 
-add_dependencies(get RapidJSON)
 add_dependencies(get RESTCLIENT)
