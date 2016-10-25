@@ -1,6 +1,9 @@
-cmake_minimum_required (VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.6)
+project(GetUpdate) 
+
 set(CMAKE_CXX_STANDARD 14)
-project (downloader)
-add_subdirectory (restclient)
-add_subdirectory (cJSON)
-add_subdirectory (src)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+include(RapidJSON)
+
+add_subdirectory(restclient)
+add_subdirectory(src)
